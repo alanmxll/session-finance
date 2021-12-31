@@ -2,12 +2,15 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
 
 func main() {
 	http.HandleFunc("/transactions", getTransactions)
+	http.HandleFunc("/transactions/create", createTransaction)
 
 	http.ListenAndServe(":8080", nil)
 }
@@ -44,3 +47,16 @@ func getTransactions(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(transactions)
 }
 
+func createTransaction(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
+
+	var res = Transactions{}
+	var body, _ = ioutil.ReadAll(r.Body)
+
+	_ = json.Unmarshal(body, &res)
+
+	fmt.Print(res)
+}
