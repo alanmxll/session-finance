@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"time"
 
 	"github.com/alanmxll/session-finance/model/transaction"
+	"github.com/alanmxll/session-finance/util"
 )
 
 func GetTransactions(w http.ResponseWriter, r *http.Request) {
@@ -18,15 +18,12 @@ func GetTransactions(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-type", "application/json")
 
-	var layout = "2006-01-02T15:04:05"
-	salaryReceived, _ := time.Parse(layout, "2021-12-26T18:24:16")
-
 	var transactions = transaction.Transactions{
 		transaction.Transaction{
 			Title:     "Salary",
 			Amount:    2625.00,
 			Type:      0,
-			CreatedAt: salaryReceived,
+			CreatedAt: util.StringToTime("2021-12-26T18:24:16"),
 		},
 	}
 
