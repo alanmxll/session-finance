@@ -10,6 +10,7 @@ import (
 	"github.com/alanmxll/session-finance/util"
 )
 
+// GetTransactions function
 func GetTransactions(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -30,6 +31,7 @@ func GetTransactions(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(transactions)
 }
 
+// CreateTransaction function
 func CreateTransaction(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		w.WriteHeader(http.StatusMethodNotAllowed)

@@ -2,6 +2,7 @@ package transaction
 
 import "time"
 
+// Transaction struct
 type Transaction struct {
 	Title     string    `json:"title"`
 	Amount    float32   `json:"amount"`
@@ -9,4 +10,5 @@ type Transaction struct {
 	CreatedAt time.Time `json:"created_at"`
 }
 
+// Transactions array type
 type Transactions []Transaction
